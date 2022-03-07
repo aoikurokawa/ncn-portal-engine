@@ -1,17 +1,23 @@
-import * as anchor from '@project-serum/anchor';
-import { Program } from '@project-serum/anchor';
-import { Mycalculatordapp } from '../target/types/mycalculatordapp';
+import assert from "assert";
+import anchor from "@project-serum/anchor";
 
-describe('mycalculatordapp', () => {
+const { SystemProgram } = anchor.web3;
 
-  // Configure the client to use the local cluster.
-  anchor.setProvider(anchor.Provider.env());
+describe("mycalculatordapp", () => {
+  const provider = anchor.Provider.local();
+  anchor.setProvider(provider);
 
-  const program = anchor.workspace.Mycalculatordapp as Program<Mycalculatordapp>;
+  const calculator = anchor.web3.Keypair.generate();
+  // @ts-ignore
+  const program = anchor.workspace.Mycalculatordapp;
 
-  it('Is initialized!', async () => {
-    // Add your test here.
-    const tx = await program.rpc.initialize({});
-    console.log("Your transaction signature", tx);
-  });
+  it("Creates a calculator", async () => {});
+
+  it("Adds two numbers", async () => {});
+
+  it("Multiplies two numbers", async () => {});
+
+  it("Subtracts two numbers", async () => {});
+
+  it("Divides two numbers", async () => {});
 });
