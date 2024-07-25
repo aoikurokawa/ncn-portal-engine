@@ -22,6 +22,11 @@ cargo t test_airdrop -- --nocapture
 
 ### Interact with program
 
+Copy IDL
+
+![image](https://github.com/user-attachments/assets/9c9b4962-ec82-4e9b-a2b3-5dade6d16a39)
+
+
 ### Create a new json file to store private key
 
 ```bash
