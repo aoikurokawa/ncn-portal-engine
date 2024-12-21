@@ -2,7 +2,7 @@ services:
   ncn-portal-engine:
     build:
       context: .
-      dockerfile: engine/Dockerfile
+      dockerfile: Dockerfile
     container_name: ncn-portal-engine
     ports:
       - "8080:8080"
