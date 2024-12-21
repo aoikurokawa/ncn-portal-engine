@@ -72,9 +72,12 @@ async fn main() -> anyhow::Result<()> {
     // let path = cur_dir.join(file_path);
     // println!("{}", path.display());
     // let mut prompt_file = File::open(&path)?;
-    let contents = prompt_text();
+    // let contents = prompt_text();
     // prompt_file.read_to_string(&mut contents)?;
 
+    let mut prompt_file = File::open(&std::env::var("PROMPT_FILE_PATH")?)?;
+    let mut contents = String::new();
+    prompt_file.read_to_string(&mut contents)?;
     // Create agent with a single context prompt
     let agent = client
         .agent(CLAUDE_3_5_SONNET)
@@ -96,10 +99,8 @@ async fn main() -> anyhow::Result<()> {
         ))
         .with_state(app_state);
 
-        // let addr = SocketAddr::from(([0, 0, 0, 0], 3000));
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:8080")
-        .await
-        .unwrap();
+    // let addr = SocketAddr::from(([0, 0, 0, 0], 3000));
+    let listener = tokio::net::TcpListener::bind("0.0.0.0:8080").await.unwrap();
     tracing::debug!("listening on {}", listener.local_addr().unwrap());
     axum::serve(listener, app).await.unwrap();
 
@@ -234,3 +235,4 @@ In summary, [brief recap of main points]. For more information on [related topic
 Please proceed with your analysis and response to the user's query.
 ")
 }
+

@@ -28,4 +28,10 @@ RUN apt-get update && apt-get install -y \
 
 COPY --from=builder /usr/src/app/target/release/ncn-portal-engine /usr/local/bin/ncn-portal-engine
 
+# Copy the prompts directory from the builder stage
+COPY --from=builder /usr/src/app/prompts /usr/local/bin/prompts
+
+# Set the working directory for the final container
+WORKDIR /usr/local/bin
+
 CMD ["ncn-portal-engine"]
